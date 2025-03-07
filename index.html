@@ -17,6 +17,41 @@
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
         }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        .navbar-brand img {
+            height: 100px; /* Ajusta el tamaño del logo */
+            width: 100px;
+        }
+
+        .whatsapp-contact {
+            font-size: 1.2rem;
+            color: var(--roco-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .whatsapp-contact i {
+            font-size: 1.5rem;
+            color: #25D366; /* Color de WhatsApp */
+        }
+
+        .content {
+            margin-top: 80px; /* Para que no quede oculto debajo del navbar fijo */
+        }
         
         .navbar-brand {
             font-weight: 700;
@@ -195,14 +230,16 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-2">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <span>R</span>OCO
+                <img src="Roco.png" alt="Logo Roco"> <!-- Asegúrate de colocar tu logo -->
             </a>
-            <button class="btn btn-roco ms-auto d-lg-none">
-                Contactar
-            </button>
+            <div class="ms-auto">
+                <a href="https://wa.me/1234567890" class="whatsapp-contact" target="_blank">
+                    <i class="fab fa-whatsapp"></i> +52 811 038 7683
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -262,7 +299,7 @@
                     <div class="product-info">
                         <h5 class="product-title">Limpiador Multiusos de Pino</h5>
                         <p class="product-desc">Botella de 1L.</p>
-                        <p class="product-price">$20.00</p>
+                        <p class="product-price">$</p>
                     </div>
                 </div>
             </div>
