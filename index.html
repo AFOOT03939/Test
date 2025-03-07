@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roco - Productos de Limpieza</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
             --roco-blue: #0056b3;
@@ -29,7 +30,7 @@
         
         .hero-section {
             background: linear-gradient(135deg, var(--roco-light-blue) 0%, #ffffff 100%);
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             border-radius: 0 0 20px 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -43,43 +44,114 @@
             color: #555;
         }
         
+        .section-title {
+            position: relative;
+            color: var(--roco-blue);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--roco-red);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
         .product-card {
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
             background-color: white;
+            height: 240px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
         
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-card:nth-child(odd):hover {
+            background: linear-gradient(45deg, #ffffff, var(--roco-light-blue));
+        }
+        
+        .product-card:nth-child(even):hover {
+            background: linear-gradient(45deg, #ffffff, #ffebee);
+        }
+        
+        .product-img-container {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            background-color: white;
         }
         
         .product-img {
-            height: 180px;
+            max-height: 100%;
+            max-width: 100%;
             object-fit: contain;
-            background-color: white;
-            padding: 1rem;
+        }
+        
+        .product-info {
+            padding: 0.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .product-title {
             color: var(--roco-blue);
             font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+        
+        .product-desc {
+            font-size: 0.75rem;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+            flex-grow: 1;
         }
         
         .product-price {
             color: var(--roco-red);
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--roco-red);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            z-index: 1;
         }
         
         .cta-section {
             background-color: var(--roco-blue);
             color: white;
             border-radius: 20px;
-            padding: 2rem;
-            margin: 2rem 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
         }
         
         .btn-roco {
@@ -94,19 +166,36 @@
         .btn-roco:hover {
             background-color: #c82333;
             color: white;
+            transform: scale(1.05);
         }
         
         .footer {
             background-color: var(--roco-blue);
             color: white;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
+            padding: 1rem 0;
+            margin-top: 1.5rem;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-2">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <span>R</span>OCO
@@ -122,86 +211,130 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 text-center">
-                    <h1 class="hero-title">Productos de Limpieza Profesionales</h1>
-                    <p class="hero-subtitle mb-4">La mejor calidad para tu hogar y negocio</p>
+                    <h1 class="hero-title">Productos de Limpieza</h1>
+                    <p class="hero-subtitle mb-2">La mejor calidad para tu hogar y negocio</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section class="container my-5">
-        <h2 class="text-center mb-4" style="color: var(--roco-blue);">Nuestros Productos Destacados</h2>
+    <section class="container my-4">
+        <h2 class="section-title animate-pulse">¡OFERTAS ESPECIALES!</h2>
         
-        <div class="row">
+        <div class="row g-2">
             <!-- Product 1 -->
-            <div class="col-6 col-md-4">
+            <div class="col-3">
                 <div class="product-card">
-                    <img src="cloro.webp" class="product-img w-100" alt="Limpiador Multiusos">
-                    <div class="p-3">
-                        <h5 class="product-title">Cloro</h5>
-                        <p class="mb-1">Botella de 1L. (Rellenar)</p>
-                        <p class="product-price">$10.00</p>
+                    <span class="product-badge">-20%</span>
+                    <div class="product-img-container">
+                        <img src="Lavanda.jpeg" class="product-img" alt="Limpiador Multiusos">
+                    </div>
+                    <div class="product-info">
+                        <h5 class="product-title">Limpiador Multiusos</h5>
+                        <p class="product-desc">Limpia todo tipo de superficies</p>
+                        <p class="product-price">$8.99</p>
                     </div>
                 </div>
             </div>
             
             <!-- Product 2 -->
-            <div class="col-6 col-md-4">
+            <div class="col-3">
                 <div class="product-card">
-                    <img src="Lavanda.jpeg" class="product-img w-100" alt="Desinfectante Premium">
-                    <div class="p-3">
-                        <h5 class="product-title">Limpiador Multiusos de Lavanda</h5>
-                        <p class="mb-1">Botella de 1L. (Rellenar)</p>
-                        <p class="product-price">$10.00</p>
+                    <div class="product-img-container">
+                        <img src="cloro.webp" class="product-img" alt="Desinfectante Premium">
+                    </div>
+                    <div class="product-info">
+                        <h5 class="product-title">Desinfectante Premium</h5>
+                        <p class="product-desc">Elimina bacterias</p>
+                        <p class="product-price">$12.50</p>
                     </div>
                 </div>
             </div>
             
             <!-- Product 3 -->
-            <div class="col-6 col-md-4">
+            <div class="col-3">
                 <div class="product-card">
-                    <img src="Pinol.jpg" class="product-img w-100" alt="Limpiador de Vidrios">
-                    <div class="p-3">
-                        <h5 class="product-title">Limpiador Multiusos de Pino</h5>
-                        <p class="mb-1">Botella de 1L.</p>
-                        <p class="product-price">$20.00</p>
+                    <span class="product-badge">Nuevo</span>
+                    <div class="product-img-container">
+                        <img src="Pinol.jpg" class="product-img" alt="Limpiador de Vidrios">
+                    </div>
+                    <div class="product-info">
+                        <h5 class="product-title">Limpiador de Vidrios</h5>
+                        <p class="product-desc">Sin marcas ni rayas</p>
+                        <p class="product-price">$7.99</p>
                     </div>
                 </div>
             </div>
             
             <!-- Product 4 -->
-            <div class="col-6 col-md-4">
+            <div class="col-3">
                 <div class="product-card">
-                    <img src="/placeholder.svg?height=180&width=180" class="product-img w-100" alt="Detergente Concentrado">
-                    <div class="p-3">
-                        <h5 class="product-title">Detergente Concentrado</h5>
-                        <p class="mb-1">Rinde hasta 40 lavados</p>
+                    <div class="product-img-container">
+                        <img src="/placeholder.svg?height=100&width=100" class="product-img" alt="Detergente Concentrado">
+                    </div>
+                    <div class="product-info">
+                        <h5 class="product-title">Detergente</h5>
+                        <p class="product-desc">Rinde 40 lavados</p>
                         <p class="product-price">$15.99</p>
                     </div>
                 </div>
             </div>
             
             <!-- Product 5 -->
-            <div class="col-6 col-md-4">
+            <div class="col-3">
                 <div class="product-card">
-                    <img src="/placeholder.svg?height=180&width=180" class="product-img w-100" alt="Limpiador de Baños">
-                    <div class="p-3">
+                    <div class="product-img-container">
+                        <img src="/placeholder.svg?height=100&width=100" class="product-img" alt="Limpiador de Baños">
+                    </div>
+                    <div class="product-info">
                         <h5 class="product-title">Limpiador de Baños</h5>
-                        <p class="mb-1">Elimina manchas y sarro</p>
+                        <p class="product-desc">Elimina manchas</p>
                         <p class="product-price">$9.50</p>
                     </div>
                 </div>
             </div>
             
             <!-- Product 6 -->
-            <div class="col-6 col-md-4">
+            <div class="col-3">
                 <div class="product-card">
-                    <img src="/placeholder.svg?height=180&width=180" class="product-img w-100" alt="Ambientador Premium">
-                    <div class="p-3">
-                        <h5 class="product-title">Ambientador Premium</h5>
-                        <p class="mb-1">Aroma duradero y fresco</p>
+                    <span class="product-badge">Popular</span>
+                    <div class="product-img-container">
+                        <img src="/placeholder.svg?height=100&width=100" class="product-img" alt="Ambientador Premium">
+                    </div>
+                    <div class="product-info">
+                        <h5 class="product-title">Ambientador</h5>
+                        <p class="product-desc">Aroma duradero</p>
                         <p class="product-price">$11.25</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="col-3">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="/placeholder.svg?height=100&width=100" class="product-img" alt="Quitamanchas">
+                    </div>
+                    <div class="product-info">
+                        <h5 class="product-title">Quitamanchas</h5>
+                        <p class="product-desc">Para toda tela</p>
+                        <p class="product-price">$10.75</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="col-3">
+                <div class="product-card">
+                    <span class="product-badge">-15%</span>
+                    <div class="product-img-container">
+                        <img src="/placeholder.svg?height=100&width=100" class="product-img" alt="Cera para Pisos">
+                    </div>
+                    <div class="product-info">
+                        <h5 class="product-title">Cera para Pisos</h5>
+                        <p class="product-desc">Brillo duradero</p>
+                        <p class="product-price">$13.99</p>
                     </div>
                 </div>
             </div>
@@ -211,8 +344,8 @@
     <!-- CTA Section -->
     <section class="container">
         <div class="cta-section text-center">
-            <h2 class="mb-3">¿Necesitas productos de limpieza profesionales?</h2>
-            <p class="mb-4">Contamos con los mejores productos para mantener tu espacio impecable</p>
+            <h2 class="mb-2">¿Necesitas productos de limpieza?</h2>
+            <p class="mb-3">Contamos con los mejores productos para tu espacio</p>
             <button class="btn btn-roco btn-lg">Solicitar Información</button>
         </div>
     </section>
